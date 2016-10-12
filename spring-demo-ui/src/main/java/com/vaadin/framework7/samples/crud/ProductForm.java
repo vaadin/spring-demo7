@@ -85,7 +85,6 @@ public class ProductForm extends ProductFormDesign {
 
     public void setCategories(Collection<Category> categories) {
         BeanItemContainer<Category> categoryContainer = new BeanItemContainer<>(Category.class);
-//        categoryContainer.setBeanIdProperty("id");
         categoryContainer.addAll(categories);
         category.setContainerDataSource(categoryContainer);
     }
@@ -129,6 +128,11 @@ public class ProductForm extends ProductFormDesign {
     }
 
     private void onSave() {
+        try {
+            fieldGroup.commit();
+        } catch (FieldGroup.CommitException e) {
+            throw new RuntimeException(e);
+        }
         Product product = ((BeanItem<Product>) fieldGroup.getItemDataSource()).getBean();
         dataService.updateProduct(product);
         viewLogic.saveProduct(product);
@@ -136,7 +140,6 @@ public class ProductForm extends ProductFormDesign {
 
     private void onDelete() {
 
-//        binder.getBean().ifPresent(viewLogic::deleteProduct); fixme
         Product product = ((BeanItem<Product>) fieldGroup.getItemDataSource()).getBean();
         if (product != null) viewLogic.deleteProduct(product);
     }

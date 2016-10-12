@@ -27,7 +27,8 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * TODO class description
+ * Basic Container implementation. Reads data from the database using spring data and
+ * keeps all the changes in memory after that.
  *
  * @author Vaadin Ltd
  */

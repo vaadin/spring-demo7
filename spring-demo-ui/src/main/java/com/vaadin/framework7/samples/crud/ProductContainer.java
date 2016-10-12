@@ -18,11 +18,11 @@ package com.vaadin.framework7.samples.crud;
 import com.vaadin.data.Container;
 
 /**
- * TODO class description
+ * Interface for ProductContainer.
  *
  * @author Vaadin Ltd
  */
-public interface ProductContainer extends Container.Indexed {
+public interface ProductContainer extends Container.Indexed, Container.Filterable {
 
     boolean removeItem(Object id);
 }

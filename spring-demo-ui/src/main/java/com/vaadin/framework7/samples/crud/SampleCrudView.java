@@ -1,5 +1,7 @@
 package com.vaadin.framework7.samples.crud;
 
+import com.vaadin.data.util.filter.Or;
+import com.vaadin.data.util.filter.SimpleStringFilter;
 import com.vaadin.framework7.samples.backend.DataService;
 import com.vaadin.framework7.samples.backend.data.Product;
 import com.vaadin.framework7.samples.crud.ProductForm.ProductFormFactory;
@@ -8,15 +10,8 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,7 +19,7 @@ import javax.annotation.PostConstruct;
 
 /**
  * A view for performing create-read-update-delete operations on products.
- *
+ * <p>
  * See also {@link SampleCrudLogic} for fetching the data, the actual CRUD
  * operations and controlling the view based on events from outside.
  */
@@ -56,10 +51,24 @@ public class SampleCrudView extends CssLayout implements View {
         filter.setStyleName("filter-textfield");
         filter.setInputPrompt("Filter");
         filter.setImmediate(true);
-/*
-        filter.addValueChangeListener(fixme
-                event -> productContainer.setFilterText(event.getValue()));
-*/
+
+        filter.addValueChangeListener(
+                event -> {
+                    String filterText = (String) event.getProperty().getValue();
+                    if (filterText == null || "".equals(filterText)) {
+                        productContainer.removeAllContainerFilters();
+                    } else {
+                        productContainer.addContainerFilter(new Or(
+                                new SimpleStringFilter("productName",filterText,true,false),
+                                new SimpleStringFilter("availability",filterText,true,false),
+                                new SimpleStringFilter("category",filterText,true,false)
+                        ));
+                    }
+                }
+
+
+        );
+
 
         newProduct = new Button("New product");
         newProduct.addStyleName(ValoTheme.BUTTON_PRIMARY);
@@ -99,7 +108,7 @@ public class SampleCrudView extends CssLayout implements View {
     }
 
     public void selectRow(Product row) {
-        ((Grid.SelectionModel.Single)grid.getSelectionModel()).select(row.getId());
+        ((Grid.SelectionModel.Single) grid.getSelectionModel()).select(row.getId());
     }
 
     public Product getSelectedRow() {
@@ -119,8 +128,7 @@ public class SampleCrudView extends CssLayout implements View {
     }
 
     public void updateProduct(Product product) {
-//        productContainer.save(product);fixme
-        // TODO: Grid used to scroll to the updated item
+        //We do not save anything to the backend in this demo
     }
 
     public void removeProduct(Product product) {
