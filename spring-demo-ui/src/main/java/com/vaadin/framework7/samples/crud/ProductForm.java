@@ -4,6 +4,7 @@ import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.converter.StringToIntegerConverter;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.framework7.samples.backend.DataService;
 import com.vaadin.framework7.samples.backend.data.Availability;
 import com.vaadin.framework7.samples.backend.data.Category;
@@ -111,12 +112,16 @@ public class ProductForm extends ProductFormDesign {
         price.setConverter(new EuroConverter());
         fieldGroup.bind(price, "price");
         fieldGroup.bind(productName, "productName");
+        productName.addValidator(new StringLengthValidator("Product name must have at least two characters",2,1024,false));
 
         fieldGroup.bind(availability, "availability");
 
         save.addClickListener(event -> onSave());
 
-        cancel.addClickListener(event -> viewLogic.cancelProduct());
+        cancel.addClickListener(event -> {
+            fieldGroup.discard();
+            viewLogic.cancelProduct();
+        });
         delete.addClickListener(event -> onDelete());
 
         category.setItemCaptionPropertyId("name");

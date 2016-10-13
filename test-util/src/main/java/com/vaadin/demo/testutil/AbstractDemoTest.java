@@ -54,7 +54,7 @@ public abstract class AbstractDemoTest extends TestBenchTestCase {
     /**
      * Default port for test server, possibly overridden with system property.
      */
-    private static final String DEFAULT_SERVER_PORT = "8888";
+    private static final String DEFAULT_SERVER_PORT = "8887";
 
     /** System property key for the test server port. */
     public static final String SERVER_PORT_PROPERTY_KEY = "serverPort";
