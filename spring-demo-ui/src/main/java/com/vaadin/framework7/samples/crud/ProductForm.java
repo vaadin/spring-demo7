@@ -22,6 +22,8 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A form for editing a single product.
@@ -94,6 +96,7 @@ public class ProductForm extends ProductFormDesign {
         if (product == null) {
             product = new Product();
         }
+        fieldGroup.discard();
         fieldGroup.setItemDataSource(new BeanItem<>(product));
         delete.setEnabled(product.getId() != -1);
 
@@ -135,16 +138,17 @@ public class ProductForm extends ProductFormDesign {
     private void onSave() {
         try {
             fieldGroup.commit();
+            Product product = ((BeanItem<Product>) fieldGroup.getItemDataSource()).getBean();
+//        We do not support saving data in this demo
+//        dataService.updateProduct(product);
+            viewLogic.saveProduct(product);
         } catch (FieldGroup.CommitException e) {
-            throw new RuntimeException(e);
+            Logger.getGlobal().log(Level.INFO,"Commit error", e);
         }
-        Product product = ((BeanItem<Product>) fieldGroup.getItemDataSource()).getBean();
-        dataService.updateProduct(product);
-        viewLogic.saveProduct(product);
     }
 
     private void onDelete() {
-
+        fieldGroup.discard();
         Product product = ((BeanItem<Product>) fieldGroup.getItemDataSource()).getBean();
         if (product != null) viewLogic.deleteProduct(product);
     }
