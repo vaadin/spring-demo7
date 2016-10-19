@@ -3,6 +3,7 @@ package com.vaadin.framework7.samples.crud;
 import java.io.Serializable;
 
 import com.vaadin.framework7.samples.authentication.AccessControl;
+import com.vaadin.ui.UI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -22,14 +23,24 @@ import com.vaadin.spring.annotation.SpringComponent;
  * the system separately, and to e.g. provide alternative views for the same
  * data.
  */
-@Scope/*(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON)*/
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON)
 @SpringComponent
 public class SampleCrudLogic implements Serializable {
 
     private SampleCrudView view;
 
     @Autowired
-    private AccessControl accessControl;
+    private ApplicationContext applicationContext;
+
+    private AccessControl getAccessControl()
+    {
+        return applicationContext.getBean(AccessControl.class);
+    }
+
+    private Page getPage()
+    {
+        return applicationContext.getBean(UI.class).getPage();
+    }
 
     @Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON)
     @SpringComponent
@@ -54,7 +65,7 @@ public class SampleCrudLogic implements Serializable {
     public void init() {
         editProduct(null);
         // Hide and disable if not admin
-        if (!accessControl.isUserInRole("admin")) {
+        if (!getAccessControl().isUserInRole("admin")) {
             view.setNewProductEnabled(false);
         }
     }
@@ -69,7 +80,6 @@ public class SampleCrudLogic implements Serializable {
      * Update the fragment without causing navigator to change view
      */
     private void setFragmentParameter(String productId) {
-/* todo fix and uncomment
         String fragmentParameter;
         if (productId == null || productId.isEmpty()) {
             fragmentParameter = "";
@@ -77,11 +87,9 @@ public class SampleCrudLogic implements Serializable {
             fragmentParameter = productId;
         }
 
-        Page page = sampleUI.getPage();
-        page.setUriFragment(
+        getPage().setUriFragment(
                 "!" + SampleCrudView.VIEW_NAME + "/" + fragmentParameter,
                 false);
-*/
     }
 
     public void enter(String productId) {
@@ -141,7 +149,7 @@ public class SampleCrudLogic implements Serializable {
     }
 
     public void rowSelected(Product product) {
-        if (accessControl.isUserInRole("admin")) {
+        if (getAccessControl().isUserInRole("admin")) {
             view.editProduct(product);
         }
     }

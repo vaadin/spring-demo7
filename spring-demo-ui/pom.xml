@@ -12,19 +12,13 @@
     <name>spring-demo-ui</name>
     <packaging>war</packaging>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-bom</artifactId>
-                <version>${vaadin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -35,38 +29,19 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring</artifactId>
-            <version>1.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-validator</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${vaadin.spring.version}</version>
         </dependency>
 
-        <!-- This version is important regarding used Vaadin plugin versions 
-            and Sring boot verions ! 1.2.2 spring boot version doesn't prvide JMX admin 
-            beans so integration testing (proper start/stop server) won't work with this 
-            version. 1.4.0 Spring boot doesn't work with with Vaadin Spring boot. -->
-<!--
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>1.4.0.RELEASE</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-autoconfigure</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
--->
 
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-shared</artifactId>
-            <version>${vaadin.version}</version>
+            <artifactId>vaadin-bom</artifactId>
+            <type>pom</type>
         </dependency>
 
         <dependency>
@@ -128,7 +103,7 @@
                                             vaadin-maven-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [7.6.8,)
+                                            [7.7.3,)
                                         </versionRange>
                                         <goals>
                                             <goal>update-theme</goal>

@@ -349,9 +349,6 @@ public class SpringCrudIT extends AbstractDemoTest {
 
         WebElement about = findElement(By.className("v-customlayout-about-content"));
         String aboutText = about.getText();
-        System.err.println("************************************");
-        System.err.println(aboutText);
-        System.err.println("************************************");
         Assert.assertTrue(aboutText.contains("This application is using Vaadin 7."));
 
         menuItems.get(0).click();//"Inventory" is clicked
