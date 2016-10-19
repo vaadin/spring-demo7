@@ -12,6 +12,7 @@
     <modules>
         <module>spring-demo-backend</module>
         <module>spring-demo-ui</module>
+        <module>spring-demo-ui-legacy-boot</module>
         <module>test-util</module>
     </modules>
     <properties>
@@ -142,7 +143,7 @@
                 <version>4.1.0.alpha1</version>
             </dependency>
             <dependency>
-                <groupId>com.vaadin.framework8</groupId>
+                <groupId>com.vaadin.framework7</groupId>
                 <artifactId>test-util</artifactId>
                 <scope>test</scope>
                 <version>${project.version}</version>
@@ -192,6 +193,5 @@
             </exclusions>
         </dependency>
     </dependencies>
-
 
 </project>
