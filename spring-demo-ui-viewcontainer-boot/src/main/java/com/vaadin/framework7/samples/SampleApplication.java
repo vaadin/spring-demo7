@@ -28,10 +28,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *
  */
 @SpringBootApplication
-@Configuration
-@EnableAutoConfiguration
 @EnableJpaRepositories
-@ComponentScan
 public class SampleApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

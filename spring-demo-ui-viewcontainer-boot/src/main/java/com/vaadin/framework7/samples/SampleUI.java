@@ -14,8 +14,6 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.spring.navigator.SpringViewProvider;
-import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
@@ -28,6 +26,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * mobile devices. Instead of device based scaling (default), using responsive
  * layouts.
  */
+@SuppressWarnings("unused")
 @Viewport("user-scalable=no,initial-scale=1.0")
 @Theme("mytheme")
 @SpringUI
@@ -55,7 +54,7 @@ public class SampleUI extends UI {
         }
     }
 
-    protected void showMainView() {
+    private void showMainView() {
         addStyleName(ValoTheme.UI_WITH_MENU);
 
         HorizontalLayout layout = new HorizontalLayout();
@@ -83,14 +82,6 @@ public class SampleUI extends UI {
         layout.setSizeFull();
 
         getNavigator().navigateTo(SampleCrudView.VIEW_NAME);
-    }
-
-    public static SampleUI get() {
-        return (SampleUI) UI.getCurrent();
-    }
-
-    public AccessControl getAccessControl() {
-        return accessControl;
     }
 
     private class ViewChangeHandler implements ViewChangeListener {
