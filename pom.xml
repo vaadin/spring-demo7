@@ -13,6 +13,7 @@
         <module>spring-demo-backend</module>
         <module>spring-demo-ui</module>
         <module>spring-demo-ui-legacy-boot</module>
+        <module>spring-demo-ui-viewcontainer-boot</module>
         <module>test-util</module>
     </modules>
     <properties>
