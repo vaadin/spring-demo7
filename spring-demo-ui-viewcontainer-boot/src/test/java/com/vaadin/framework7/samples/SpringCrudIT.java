@@ -35,6 +35,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vaadin.demo.testutil.AbstractDemoTest;
@@ -48,7 +49,7 @@ import com.vaadin.testbench.elements.PasswordFieldElement;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestConfig.class)
+@SpringBootTest
 public class SpringCrudIT extends AbstractDemoTest {
 
     @Autowired
@@ -261,7 +262,7 @@ public class SpringCrudIT extends AbstractDemoTest {
                 .collect(Collectors.toMap(Category::getName,
                         Function.identity()));
 
-        checkboxes.stream().forEach(
+        checkboxes.forEach(
                 checkbox -> checkCategory(checkbox, productCategories));
     }
 
@@ -320,7 +321,7 @@ public class SpringCrudIT extends AbstractDemoTest {
         } else {
             hasText(columns.get(4), String.valueOf(stockCount));
         }
-        product.getCategory().stream()
+        product.getCategory()
                 .forEach(cat -> hasText(columns.get(5), cat.getName()));
     }
 
