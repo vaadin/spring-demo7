@@ -15,15 +15,11 @@
  */
 package com.vaadin.framework7.samples;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
+import com.vaadin.demo.testutil.AbstractDemoTest;
+import com.vaadin.framework7.samples.backend.DataService;
+import com.vaadin.framework7.samples.backend.data.Category;
+import com.vaadin.framework7.samples.backend.data.Product;
+import com.vaadin.testbench.elements.PasswordFieldElement;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -34,21 +30,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vaadin.demo.testutil.AbstractDemoTest;
-import com.vaadin.framework7.samples.backend.DataService;
-import com.vaadin.framework7.samples.backend.data.Category;
-import com.vaadin.framework7.samples.backend.data.Product;
-import com.vaadin.testbench.elements.PasswordFieldElement;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author Vaadin Ltd
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestConfig.class)
+@SpringBootTest
 public class SpringCrudIT extends AbstractDemoTest {
 
     @Autowired
@@ -261,7 +255,7 @@ public class SpringCrudIT extends AbstractDemoTest {
                 .collect(Collectors.toMap(Category::getName,
                         Function.identity()));
 
-        checkboxes.stream().forEach(
+        checkboxes.forEach(
                 checkbox -> checkCategory(checkbox, productCategories));
     }
 
@@ -320,8 +314,7 @@ public class SpringCrudIT extends AbstractDemoTest {
         } else {
             hasText(columns.get(4), String.valueOf(stockCount));
         }
-        product.getCategory().stream()
-                .forEach(cat -> hasText(columns.get(5), cat.getName()));
+        product.getCategory().forEach(cat -> hasText(columns.get(5), cat.getName()));
     }
 
     private void checkFormLocation(WebElement form) {
@@ -349,9 +342,6 @@ public class SpringCrudIT extends AbstractDemoTest {
 
         WebElement about = findElement(By.className("v-customlayout-about-content"));
         String aboutText = about.getText();
-        System.err.println("************************************");
-        System.err.println(aboutText);
-        System.err.println("************************************");
         Assert.assertTrue(aboutText.contains("This application is using Vaadin 7."));
 
         menuItems.get(0).click();//"Inventory" is clicked

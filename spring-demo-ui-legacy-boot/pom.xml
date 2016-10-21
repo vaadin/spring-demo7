@@ -8,17 +8,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-demo-ui</artifactId>
-    <name>spring-demo-ui</name>
+    <artifactId>spring-demo-ui-legacy-boot</artifactId>
     <packaging>war</packaging>
+    <name>Spring-Boot Demo Legacy Navigation</name>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-themes</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -28,14 +22,21 @@
 
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring</artifactId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
             <version>${vaadin.spring.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.boot.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -44,21 +45,24 @@
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin.framework7</groupId>
+            <artifactId>spring-demo-ui</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin.framework7</groupId>
+            <artifactId>spring-demo-ui</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+        </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <!-- By attaching the classes to a separate JAR, we can
-                        import them directly in to the dependent projects. -->
-                    <attachClasses>true</attachClasses>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
@@ -69,6 +73,36 @@
                             <!-- Comment out compile-theme goal to use on-the-fly 
                                 theme compilation -->
                             <goal>compile-theme</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <skip>${skipTests}</skip>
+                    <!-- This is required to be able to start Tomcat on Travis 
+                        and be able to manage its instance (detect that it's started) The other opition 
+                        is to use Undertow instead of Tomcat with default settings. Jetty won't work 
+                        since it contains some classes which are incompatible with tomcat-jdbc dependencies. 
+                        Those deps are part of spring boot JPA data. -->
+                    <fork>true</fork>
+                    <jvmArguments>-Djava.security.egd=file:/dev/./urandom
+                        -Dserver.port=8887</jvmArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pre-integration-test</id>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-integration-test</id>
+                        <goals>
+                            <goal>stop</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -92,7 +126,7 @@
                                             vaadin-maven-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [7.7.3,)
+                                            [7.6.8,)
                                         </versionRange>
                                         <goals>
                                             <goal>update-theme</goal>

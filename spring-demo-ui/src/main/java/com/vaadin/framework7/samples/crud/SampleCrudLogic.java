@@ -2,12 +2,13 @@ package com.vaadin.framework7.samples.crud;
 
 import java.io.Serializable;
 
+import com.vaadin.framework7.samples.authentication.AccessControl;
+import com.vaadin.ui.UI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 
-import com.vaadin.framework7.samples.SampleUI;
 import com.vaadin.framework7.samples.backend.DataService;
 import com.vaadin.framework7.samples.backend.data.Product;
 import com.vaadin.server.Page;
@@ -27,6 +28,19 @@ import com.vaadin.spring.annotation.SpringComponent;
 public class SampleCrudLogic implements Serializable {
 
     private SampleCrudView view;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    private AccessControl getAccessControl()
+    {
+        return applicationContext.getBean(AccessControl.class);
+    }
+
+    private Page getPage()
+    {
+        return applicationContext.getBean(UI.class).getPage();
+    }
 
     @Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON)
     @SpringComponent
@@ -51,7 +65,7 @@ public class SampleCrudLogic implements Serializable {
     public void init() {
         editProduct(null);
         // Hide and disable if not admin
-        if (!SampleUI.get().getAccessControl().isUserInRole("admin")) {
+        if (!getAccessControl().isUserInRole("admin")) {
             view.setNewProductEnabled(false);
         }
     }
@@ -73,8 +87,7 @@ public class SampleCrudLogic implements Serializable {
             fragmentParameter = productId;
         }
 
-        Page page = SampleUI.get().getPage();
-        page.setUriFragment(
+        getPage().setUriFragment(
                 "!" + SampleCrudView.VIEW_NAME + "/" + fragmentParameter,
                 false);
     }
@@ -136,7 +149,7 @@ public class SampleCrudLogic implements Serializable {
     }
 
     public void rowSelected(Product product) {
-        if (SampleUI.get().getAccessControl().isUserInRole("admin")) {
+        if (getAccessControl().isUserInRole("admin")) {
             view.editProduct(product);
         }
     }

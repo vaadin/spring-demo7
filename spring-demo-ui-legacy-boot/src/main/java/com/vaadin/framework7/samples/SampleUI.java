@@ -28,6 +28,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * mobile devices. Instead of device based scaling (default), using responsive
  * layouts.
  */
+@SuppressWarnings("unused")
 @Viewport("user-scalable=no,initial-scale=1.0")
 @Theme("mytheme")
 @SpringUI
@@ -53,7 +54,7 @@ public class SampleUI extends UI {
         }
     }
 
-    protected void showMainView() {
+    private void showMainView() {
         addStyleName(ValoTheme.UI_WITH_MENU);
 
         HorizontalLayout layout = new HorizontalLayout();
@@ -86,14 +87,6 @@ public class SampleUI extends UI {
         navigator.navigateTo(SampleCrudView.VIEW_NAME);
     }
 
-    public static SampleUI get() {
-        return (SampleUI) UI.getCurrent();
-    }
-
-    public AccessControl getAccessControl() {
-        return accessControl;
-    }
-
     private class ViewChangeHandler implements ViewChangeListener {
 
         @Override
@@ -106,6 +99,6 @@ public class SampleUI extends UI {
             menu.setActiveView(event.getViewName());
         }
 
-    };
+    }
 
 }
