@@ -13,6 +13,8 @@
         <module>spring-demo-backend</module>
         <module>spring-demo-ui</module>
         <module>spring-demo-ui-legacy-boot</module>
+        <module>spring-demo-ui-viewcontainer-boot</module>
+        <module>spring-demo-ui-viewcontainer-field-boot</module>
         <module>test-util</module>
     </modules>
     <properties>
@@ -156,6 +158,7 @@
                 <artifactId>vaadin-bom</artifactId>
                 <version>${vaadin.version}</version>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

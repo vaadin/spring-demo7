@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2016 Vaadin Ltd.
+ * Copyright 2000-2014 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,20 +15,16 @@
  */
 package com.vaadin.framework7.samples;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import com.vaadin.spring.annotation.SpringComponent;
+import com.vaadin.spring.annotation.ViewContainer;
+import com.vaadin.ui.CssLayout;
 
 /**
- * @author Vaadin Ltd
+ * ViewContainer bean sample
  *
+ * @author Vaadin Ltd
  */
-@SpringBootApplication
-@EnableJpaRepositories
-public class SampleApplication extends SpringBootServletInitializer {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SampleApplication.class, args);
-    }
+@SpringComponent
+@ViewContainer
+public class MyViewContainer extends CssLayout{
 }

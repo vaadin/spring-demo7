@@ -15,21 +15,29 @@
  */
 package com.vaadin.framework7.samples;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import com.vaadin.spring.annotation.ViewContainer;
+import com.vaadin.ui.CssLayout;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * @author Vaadin Ltd
- *
  */
-@Configuration
-@EnableAutoConfiguration
 @SpringBootApplication
 @EnableJpaRepositories
-@ComponentScan
-public class TestConfig {
+public class SampleApplication extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SampleApplication.class, args);
+    }
+
+    @Bean("viewContainer")
+    @ViewContainer
+    public CssLayout createNewLayoutForNavigation() {
+        return new CssLayout();
+    }
 
 }

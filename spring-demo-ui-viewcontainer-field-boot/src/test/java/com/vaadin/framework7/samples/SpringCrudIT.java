@@ -15,11 +15,15 @@
  */
 package com.vaadin.framework7.samples;
 
-import com.vaadin.demo.testutil.AbstractDemoTest;
-import com.vaadin.framework7.samples.backend.DataService;
-import com.vaadin.framework7.samples.backend.data.Category;
-import com.vaadin.framework7.samples.backend.data.Product;
-import com.vaadin.testbench.elements.PasswordFieldElement;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -30,12 +34,15 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import com.vaadin.demo.testutil.AbstractDemoTest;
+import com.vaadin.framework7.samples.backend.DataService;
+import com.vaadin.framework7.samples.backend.data.Category;
+import com.vaadin.framework7.samples.backend.data.Product;
+import com.vaadin.testbench.elements.PasswordFieldElement;
 
 /**
  * @author Vaadin Ltd
@@ -190,7 +197,7 @@ public class SpringCrudIT extends AbstractDemoTest {
     /*
      * XXX: doesn't work in PhantomJS. Works in Chrome. It looks like there is
      * some issue with screen size/responsiveness and PhantomJS.
-     * 
+     *
      * No screen size issues in Chrome.
      */
     public void closeEditor() {
@@ -216,7 +223,7 @@ public class SpringCrudIT extends AbstractDemoTest {
     /*
      * XXX: doesn't work in PhantomJS. Works in Chrome. It looks like there is
      * some issue with screen size/responsiveness and PhantomJS.
-     * 
+     *
      * No screen size issues in Chrome.
      */
     public void deselectRow() {
