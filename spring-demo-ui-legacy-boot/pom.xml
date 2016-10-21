@@ -40,12 +40,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-bom</artifactId>
-            <type>pom</type>
-        </dependency>
-
-        <dependency>
             <groupId>com.vaadin.framework7</groupId>
             <artifactId>test-util</artifactId>
             <version>${project.version}</version>
