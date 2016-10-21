@@ -60,9 +60,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <!-- By attaching the classes to a separate JAR, we can 
-                        import them directly in the production overlay project, making it easier 
-                        to compile a separate widgetset for production mode. -->
+                    <!-- By attaching the classes to a separate JAR, we can
+                        import them directly in to the dependent projects. -->
                     <attachClasses>true</attachClasses>
                 </configuration>
             </plugin>

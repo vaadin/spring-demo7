@@ -70,17 +70,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <!-- By attaching the classes to a separate JAR, we can
-                        import them directly in the production overlay project, making it easier
-                        to compile a separate widgetset for production mode. -->
-                    <attachClasses>true</attachClasses>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <executions>
@@ -107,7 +96,8 @@
                         Those deps are part of spring boot JPA data. -->
                     <fork>true</fork>
                     <jvmArguments>-Djava.security.egd=file:/dev/./urandom
-                        -Dserver.port=8887</jvmArguments>
+                        -Dserver.port=8887
+                    </jvmArguments>
                 </configuration>
                 <executions>
                     <execution>
