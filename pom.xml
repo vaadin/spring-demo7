@@ -10,12 +10,13 @@
     <version>1.1</version>
 
     <modules>
+        <module>test-util</module>
         <module>spring-demo-backend</module>
         <module>spring-demo-ui</module>
         <module>spring-demo-ui-legacy-boot</module>
         <module>spring-demo-ui-viewcontainer-boot</module>
         <module>spring-demo-ui-viewcontainer-field-boot</module>
-        <module>test-util</module>
+        <module>spring-demo-classic</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
