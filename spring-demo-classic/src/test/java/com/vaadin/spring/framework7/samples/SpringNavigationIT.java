@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.vaadin.spring.tutorial;
+package com.vaadin.spring.framework7.samples;
 
 import com.vaadin.demo.testutil.AbstractDemoTest;
 import org.junit.Assert;
@@ -93,7 +93,7 @@ public class SpringNavigationIT extends AbstractDemoTest {
     }
 
     private void checkErrorIndicator(WebElement element, boolean shouldBePresent) {
-        boolean present = 1 == element.findElements(By.className("v-errorindicator")).size();
+        boolean present = !element.findElements(By.className("v-errorindicator")).isEmpty();
         Assert.assertEquals("Error indicator", shouldBePresent, present);
     }
 

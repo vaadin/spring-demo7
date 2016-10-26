@@ -13,20 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.vaadin.spring.tutorial;
+package com.vaadin.spring.framework7.samples;
 
-import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.annotation.ViewContainer;
+import com.vaadin.ui.Panel;
+import org.springframework.stereotype.Component;
 
 /**
- * One of the example views
+ * A very simple {@link ViewContainer example}
  *
  * @author Vaadin Ltd
  */
-@SuppressWarnings("unused")
-@SpringView(name = "private")
-public class PrivateView extends TrivialNavigationComponent {
-
-    public PrivateView() {
-        super("Private");
+@SuppressWarnings("WeakerAccess")
+@Component
+@ViewContainer
+public class SpringTestViewContainer extends Panel {
+    public SpringTestViewContainer() {
+        super("View Container");
+        setSizeFull();
     }
 }

@@ -1,4 +1,4 @@
-package com.vaadin.spring.tutorial;
+package com.vaadin.spring.framework7.samples;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -40,8 +40,8 @@ public class NavigableSpringTestUI extends UI {
     }
 
     @Configuration
-    @EnableVaadinNavigation
     @EnableVaadin
+    @EnableVaadinNavigation
     public static class SpringConfiguration {
     }
 
