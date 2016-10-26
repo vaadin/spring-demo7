@@ -3,4 +3,4 @@
 target
 error-screenshots
 reference-screenshots
-VAADIN/themes/mytheme/styles.css
+spring-demo-ui/src/main/webapp/VAADIN/themes/mytheme/styles.css

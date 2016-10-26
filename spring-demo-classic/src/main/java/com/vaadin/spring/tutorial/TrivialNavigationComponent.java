@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Vaadin Ltd
  */
+@SuppressWarnings("WeakerAccess")
 public class TrivialNavigationComponent extends VerticalLayout implements View {
 
     @Autowired
@@ -43,6 +44,7 @@ public class TrivialNavigationComponent extends VerticalLayout implements View {
         setMargin(true);
         Label title = new Label(caption);
         title.setStyleName(ValoTheme.LABEL_SUCCESS + " " + ValoTheme.LABEL_BOLD);
+        title.setId("title");
         addComponent(title);
         addButton("login", "Log In", () -> accessControl.setPrivateViewAllowed(true), "Access Granted");
         addButton("logout", "Log Out", () -> accessControl.setPrivateViewAllowed(false), "Access Revoked");
