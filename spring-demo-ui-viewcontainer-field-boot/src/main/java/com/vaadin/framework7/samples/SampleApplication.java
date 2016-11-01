@@ -15,7 +15,7 @@
  */
 package com.vaadin.framework7.samples;
 
-import com.vaadin.spring.annotation.ViewContainer;
+import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.CssLayout;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,7 +35,7 @@ public class SampleApplication extends SpringBootServletInitializer {
     }
 
     @Bean("viewContainer")
-    @ViewContainer
+    @SpringViewDisplay
     public CssLayout createNewLayoutForNavigation() {
         return new CssLayout();
     }

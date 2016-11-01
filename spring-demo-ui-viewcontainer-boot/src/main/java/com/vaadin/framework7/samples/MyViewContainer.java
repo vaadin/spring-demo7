@@ -15,8 +15,7 @@
  */
 package com.vaadin.framework7.samples;
 
-import com.vaadin.spring.annotation.SpringComponent;
-import com.vaadin.spring.annotation.ViewContainer;
+import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.CssLayout;
 
 /**
@@ -24,7 +23,6 @@ import com.vaadin.ui.CssLayout;
  *
  * @author Vaadin Ltd
  */
-@SpringComponent
-@ViewContainer
+@SpringViewDisplay
 public class MyViewContainer extends CssLayout{
 }

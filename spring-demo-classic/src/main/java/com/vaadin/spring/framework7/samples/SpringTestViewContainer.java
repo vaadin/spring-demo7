@@ -15,18 +15,16 @@
  */
 package com.vaadin.spring.framework7.samples;
 
-import com.vaadin.spring.annotation.ViewContainer;
+import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.Panel;
-import org.springframework.stereotype.Component;
 
 /**
- * A very simple {@link ViewContainer example}
+ * A very simple {@link SpringViewDisplay example}
  *
  * @author Vaadin Ltd
  */
 @SuppressWarnings("WeakerAccess")
-@Component
-@ViewContainer
+@SpringViewDisplay
 public class SpringTestViewContainer extends Panel {
     public SpringTestViewContainer() {
         super("View Container");
