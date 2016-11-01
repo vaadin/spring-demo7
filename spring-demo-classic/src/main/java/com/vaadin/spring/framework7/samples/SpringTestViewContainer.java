@@ -25,8 +25,8 @@ import com.vaadin.ui.Panel;
  */
 @SuppressWarnings("WeakerAccess")
 @SpringViewDisplay
-public class SpringTestViewContainer extends Panel {
-    public SpringTestViewContainer() {
+public class SpringTestSpringViewDisplay extends Panel {
+    public SpringTestSpringViewDisplay() {
         super("View Container");
         setSizeFull();
     }

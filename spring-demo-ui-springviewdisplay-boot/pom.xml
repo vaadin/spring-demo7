@@ -8,9 +8,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-demo-ui-viewcontainer-field-boot</artifactId>
+    <artifactId>spring-demo-ui-springViewDisplay-boot</artifactId>
     <packaging>war</packaging>
-    <name>Spring-Boot Demo Annotated Navigation (Factory Method)</name>
+    <name>Spring-Boot Demo Annotated Navigation</name>
 
     <dependencies>
 
@@ -90,7 +90,8 @@
                         Those deps are part of spring boot JPA data. -->
                     <fork>true</fork>
                     <jvmArguments>-Djava.security.egd=file:/dev/./urandom
-                        -Dserver.port=8887</jvmArguments>
+                        -Dserver.port=8887
+                    </jvmArguments>
                 </configuration>
                 <executions>
                     <execution>

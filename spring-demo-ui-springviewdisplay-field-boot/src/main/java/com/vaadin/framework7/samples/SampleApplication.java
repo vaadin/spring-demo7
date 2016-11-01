@@ -34,7 +34,7 @@ public class SampleApplication extends SpringBootServletInitializer {
         SpringApplication.run(SampleApplication.class, args);
     }
 
-    @Bean("viewContainer")
+    @Bean("springViewDisplay")
     @SpringViewDisplay
     public CssLayout createNewLayoutForNavigation() {
         return new CssLayout();

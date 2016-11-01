@@ -19,10 +19,10 @@ import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.CssLayout;
 
 /**
- * ViewContainer bean sample
+ * SpringViewDisplay bean sample
  *
  * @author Vaadin Ltd
  */
 @SpringViewDisplay
-public class MyViewContainer extends CssLayout{
+public class MySpringViewDisplay extends CssLayout{
 }

@@ -62,11 +62,11 @@ public class SampleUI extends UI {
 
         layout.setStyleName("main-screen");
 
-        CssLayout viewContainer = new CssLayout();
-        viewContainer.addStyleName("valo-content");
-        viewContainer.setSizeFull();
+        CssLayout springViewDisplay = new CssLayout();
+        springViewDisplay.addStyleName("valo-content");
+        springViewDisplay.setSizeFull();
 
-        Navigator navigator = new Navigator(this, viewContainer);
+        Navigator navigator = new Navigator(this, springViewDisplay);
         navigator.addProvider(viewProvider);
         navigator.setErrorView(ErrorView.class);
 
@@ -80,8 +80,8 @@ public class SampleUI extends UI {
         navigator.addViewChangeListener(new ViewChangeHandler());
 
         layout.addComponent(menu);
-        layout.addComponent(viewContainer);
-        layout.setExpandRatio(viewContainer, 1);
+        layout.addComponent(springViewDisplay);
+        layout.setExpandRatio(springViewDisplay, 1);
         layout.setSizeFull();
 
         navigator.navigateTo(SampleCrudView.VIEW_NAME);
