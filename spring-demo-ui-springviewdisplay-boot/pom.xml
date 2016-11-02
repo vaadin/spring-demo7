@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-demo-ui-springViewDisplay-boot</artifactId>
+    <artifactId>spring-demo-ui-springviewdisplay-boot</artifactId>
     <packaging>war</packaging>
     <name>Spring-Boot Demo Annotated Navigation</name>
 
