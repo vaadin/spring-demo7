@@ -37,7 +37,7 @@ public class SampleUI extends UI {
     private Menu menu;
 
     @Autowired
-    private Layout viewContainer;
+    private Layout springViewDisplay;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -60,8 +60,8 @@ public class SampleUI extends UI {
 
         layout.setStyleName("main-screen");
 
-        viewContainer.addStyleName("valo-content");
-        viewContainer.setSizeFull();
+        springViewDisplay.addStyleName("valo-content");
+        springViewDisplay.setSizeFull();
 
         getNavigator().setErrorView(ErrorView.class);
 
@@ -75,8 +75,8 @@ public class SampleUI extends UI {
         getNavigator().addViewChangeListener(new ViewChangeHandler());
 
         layout.addComponent(menu);
-        layout.addComponent(viewContainer);
-        layout.setExpandRatio(viewContainer, 1);
+        layout.addComponent(springViewDisplay);
+        layout.setExpandRatio(springViewDisplay, 1);
         layout.setSizeFull();
 
         getNavigator().navigateTo(SampleCrudView.VIEW_NAME);

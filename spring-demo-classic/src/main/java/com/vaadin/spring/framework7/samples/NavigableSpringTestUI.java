@@ -28,11 +28,11 @@ import javax.servlet.annotation.WebServlet;
 public class NavigableSpringTestUI extends UI {
 
     @Autowired
-    private SpringTestViewContainer viewContainer;
+    private SpringTestSpringViewDisplay springViewDisplay;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        setContent(viewContainer);
+        setContent(springViewDisplay);
     }
 
     @WebListener
